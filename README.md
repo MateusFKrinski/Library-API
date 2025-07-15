@@ -8,7 +8,7 @@ Esta é uma API REST simples para gerenciar livros e autores, construída com No
 * CRUD de autores (`Author`)
 * Conexão com banco de dados MongoDB via Mongoose
 
-## 🛠Tecnologias Utilizadas
+## Tecnologias Utilizadas
 
 * Node.js
 * Express.js
