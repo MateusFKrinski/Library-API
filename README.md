@@ -1,4 +1,4 @@
-# API de Livros Simples
+# API de Livraria
 
 Esta é uma API REST simples para gerenciar livros e autores, construída com Node.js, Express e MongoDB usando Mongoose.
 
@@ -46,8 +46,8 @@ src/
 1. Clone o repositório:
 
 ```bash
-git clone -b master git@github.com:MateusFKrinski/Simple-Book-API.git
-cd Simple-Book-API
+git clone -b master git@github.com:MateusFKrinski/Library-API.git
+cd Library-API
 ```
 
 2. Instale as dependências:
