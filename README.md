@@ -46,7 +46,7 @@ src/
 1. Clone o repositório:
 
 ```bash
-git clone git@github.com:MateusFKrinski/Simple-Book-API.git
+git clone -b master git@github.com:MateusFKrinski/Simple-Book-API.git
 cd Simple-Book-API
 ```
 
