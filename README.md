@@ -62,6 +62,8 @@ yarn install
 DATABASE_URL=<sua_url>
 ```
 
+**Observação:** Este projeto utiliza MongoDB. A variável `DATABASE_URL` no arquivo `.env` deve apontar para uma instância válida do MongoDB.
+
 4. Inicie o servidor:
 
 ```bash
