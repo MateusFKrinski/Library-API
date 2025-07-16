@@ -1,53 +1,60 @@
 import { author } from "../models/Author.js";
+import Error404 from "../errors/Error404.js";
 
 class AuthorController {
-  static async getAllAuthors(req, res) {
+  static async getAllAuthors(req, res, next) {
     try {
       const a = await author.find();
       res.status(200).json(a);
-    } catch (e) {
-      res.status(500).json({ message: e.message });
+    } catch (err) {
+      next(err);
     }
   }
 
-  static async getAuthor(req, res) {
+  static async getAuthor(req, res, next) {
     try {
       const id = req.params.id;
       const a = await author.findById(id);
-      res.status(200).json(a);
-    } catch (e) {
-      res.status(500).json({ message: e.message });
+      a ? res.status(200).json(a) : new Error404("ID not finded");
+    } catch (err) {
+      next(err);
     }
   }
 
-  static async newAuthor(req, res) {
+  static async newAuthor(req, res, next) {
     try {
       const a = await author.create(req.body);
       res
         .status(201)
-        .json({ message: "Data Registered Successfully", data: a });
-    } catch (e) {
-      res.status(500).json({ message: e.message });
+        .json({ message: "Data registered successfully", data: a });
+    } catch (err) {
+      next(err);
     }
   }
 
-  static async updateAuthor(req, res) {
+  static async updateAuthor(req, res, next) {
     try {
       const id = req.params.id;
       const a = await author.findByIdAndUpdate(id, req.body);
-      res.status(200).json({ message: "Data Updated Successfully", data: a });
-    } catch (e) {
-      res.status(500).json({ message: e.message });
+      a
+        ? res
+            .status(200)
+            .json({ message: "Data updated successfully", data: a })
+        : new Error404("ID not finded");
+    } catch (err) {
+      next(err);
     }
   }
 
-  static async deleteAuthor(req, res) {
+  static async deleteAuthor(req, res, next) {
     try {
       const id = req.params.id;
-      await author.findByIdAndDelete(id);
-      res.status(200).json({ message: "Deleted" });
-    } catch (e) {
-      res.status(500).json({ message: e.message });
+      const a = await author.findByIdAndDelete(id);
+      a
+        ? res.status(200).json({ message: "Deleted" })
+        : new Error404("ID not finded");
+    } catch (err) {
+      next(err);
     }
   }
 }

@@ -7,4 +7,4 @@ export default async function connectDatabase() {
   await mongoose.connect(DATABASE_URL);
 
   return mongoose.connection;
-}
+};

@@ -14,7 +14,6 @@ Esta é uma API REST simples para gerenciar livros e autores, construída com No
 * Express.js
 * MongoDB + Mongoose
 * JavaScript
-* dotenv
 
 ## Estrutura de Pastas
 
