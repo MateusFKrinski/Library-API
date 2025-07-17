@@ -1,21 +1,37 @@
 import mongoose from "mongoose";
-import { authorSchema } from "./Author.js";
 
 const bookSchema = new mongoose.Schema(
   {
     id: { type: mongoose.Schema.Types.ObjectId },
     title: {
-      type: mongoose.Schema.Types.String,
+      type: String,
       required: [true, "'title' parameter is mandatory"],
+      trim: true,
     },
-    publisher: { type: mongoose.Schema.Types.String },
-    price: { type: mongoose.Schema.Types.Number },
-    pages: { type: mongoose.Schema.Types.String },
+    publisher: {
+      type: String,
+      trim: true,
+    },
+    price: {
+      type: Number,
+      min: [0, "'price' must be a positive number"],
+    },
+    pages: {
+      type: Number,
+      min: [1, "'pages' must be at least 1"],
+    },
     author: {
-      authorSchema,
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "authors",
+      required: [true, "'author' ID is required"],
     },
   },
-  { versionKey: false },
+  {
+    versionKey: false,
+    timestamps: true,
+  },
 );
 
-export const book = mongoose.model("books", bookSchema);
+const book = mongoose.model("books", bookSchema);
+
+export default book;

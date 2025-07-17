@@ -1,11 +1,12 @@
-import { author } from "../models/Author.js";
+import { author } from "../models/index.js";
 import Error404 from "../errors/Error404.js";
 
 class AuthorController {
   static async getAllAuthors(req, res, next) {
     try {
-      const a = await author.find();
-      res.status(200).json(a);
+      const a = author.find();
+      req.pagination = a;
+      next();
     } catch (err) {
       next(err);
     }
@@ -15,7 +16,7 @@ class AuthorController {
     try {
       const id = req.params.id;
       const a = await author.findById(id);
-      a ? res.status(200).json(a) : new Error404("ID not finded");
+      a ? res.status(200).json(a) : next(new Error404("ID not found"));
     } catch (err) {
       next(err);
     }
@@ -40,7 +41,7 @@ class AuthorController {
         ? res
             .status(200)
             .json({ message: "Data updated successfully", data: a })
-        : new Error404("ID not finded");
+        : next(new Error404("ID not found"));
     } catch (err) {
       next(err);
     }
@@ -52,7 +53,7 @@ class AuthorController {
       const a = await author.findByIdAndDelete(id);
       a
         ? res.status(200).json({ message: "Deleted" })
-        : new Error404("ID not finded");
+        : next(new Error404("ID not found"));
     } catch (err) {
       next(err);
     }

@@ -1,5 +1,4 @@
 import express from "express";
-import mongoose from "mongoose";
 import connectDatabase from "./config/dbConnect.js";
 import routes from "./routes/index.js";
 import errorMiddleware from "./middlewares/errorMiddleware.js";
@@ -8,7 +7,7 @@ import error404Middleware from "./middlewares/error404Middleware.js";
 const connect = await connectDatabase();
 
 connect.on("error", (error) => {
-  console.error("Conection error", error);
+  console.error("Connection error", error);
 });
 
 connect.once("open", () => {
