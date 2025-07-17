@@ -1,11 +1,13 @@
 {
-  "name": "project",
+  "name": "library-api",
   "version": "1.0.0",
   "main": "server.js",
   "type": "module",
   "scripts": {
     "dev": "nodemon server.js"
   },
+  "repository": "git@github.com:MateusFKrinski/Library-API.git",
+  "author": "Mateus Krinski <mateus.krinski10@gmail.com>",
   "license": "MIT",
   "devDependencies": {
     "nodemon": "^3.1.10"
